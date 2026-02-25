@@ -19,7 +19,7 @@ public class BookJsonTests {
         var jsonContent = json.write(book);
         assertThat(jsonContent).extractingJsonPathStringValue("@.isbn")
                 .isEqualTo(book.isbn());
-        assertThat(jsonContgit initent).extractingJsonPathStringValue("@.title")
+        assertThat(jsonContent).extractingJsonPathStringValue("@.title")
                 .isEqualTo(book.title());
         assertThat(jsonContent).extractingJsonPathStringValue("@.author")
                 .isEqualTo(book.author());
