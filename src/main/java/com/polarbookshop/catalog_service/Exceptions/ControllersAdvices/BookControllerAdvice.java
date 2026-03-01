@@ -1,6 +1,5 @@
 package com.polarbookshop.catalog_service.Exceptions.ControllersAdvices;
 
-import com.polarbookshop.catalog_service.Entitys.Book;
 import com.polarbookshop.catalog_service.Exceptions.BookAlreadyExistsException;
 import com.polarbookshop.catalog_service.Exceptions.BookNotFoundExeption;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,7 @@ public class BookControllerAdvice {
     }
 
     @ExceptionHandler(BookAlreadyExistsException.class)
-    @ResponseStatus(HttpStatus.UNPROCESSABLE_CONTENT)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     String bookAlreadyExistsHandler(BookAlreadyExistsException ex){
         return ex.getMessage();
     }
