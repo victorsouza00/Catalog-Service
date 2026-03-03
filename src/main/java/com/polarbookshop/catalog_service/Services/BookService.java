@@ -5,6 +5,7 @@ import com.polarbookshop.catalog_service.Exceptions.BookAlreadyExistsException;
 import com.polarbookshop.catalog_service.Exceptions.BookNotFoundExeption;
 import com.polarbookshop.catalog_service.Repository.BookRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BookService {
@@ -27,7 +28,7 @@ public class BookService {
         }
         return bookRepository.save(book);
     }
-
+    @Transactional
     public void removeBookFromCatalog(String isbn){
         bookRepository.deleteByIsbn(isbn);
     }
@@ -36,10 +37,14 @@ public class BookService {
         return bookRepository.findByIsbn(isbn)
                 .map(existingBook -> {
                     var bookUpdate = new Book(
+                            existingBook.id(),
                             existingBook.isbn(),
                             book.title(),
                             book.author(),
-                            book.price()
+                            book.price(),
+                            existingBook.createdDate(),
+                            existingBook.lastModifiedDate(),
+                            existingBook.version()
                     );
                     return bookRepository.save(bookUpdate);
                 })

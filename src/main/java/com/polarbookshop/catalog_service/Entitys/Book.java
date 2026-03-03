@@ -4,8 +4,15 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
+import org.springframework.data.annotation.*;
+import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.Instant;
+
+@Table("book")
 public record Book(
+        @Id
+        Long id,
         @NotBlank(message = "The book ISBN must be defined")
         @Pattern(
                 regexp = "^([0-9]{10}|[0-9]{13})$",
@@ -22,6 +29,19 @@ public record Book(
         @Positive(
                 message = "The book price must be greater than zero."
         )
-        Double price
+        Double price,
+        @CreatedDate
+        Instant createdDate,
+
+        @LastModifiedDate
+        Instant lastModifiedDate,
+
+        @Version
+        int version
 ) {
+        public static Book of(
+                String isbn,String title,String author, Double price
+        ){
+                return new Book(null,isbn,title,author,price,null,null,0);
+        }
 }
