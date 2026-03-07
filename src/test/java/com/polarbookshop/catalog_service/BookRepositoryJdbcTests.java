@@ -11,20 +11,15 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jdbc.core.JdbcAggregateTemplate;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.TestPropertySource;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 @DataJdbcTest
 @Import(DataConfig.class)
 @ActiveProfiles("integration")
-@AutoConfigureTestDatabase(
-        replace = AutoConfigureTestDatabase.Replace.NONE
-)
-@TestPropertySource(properties = "spring.cloud.config.enabled=false")
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class BookRepositoryJdbcTests {
     @Autowired
     private BookRepository bookRepository;

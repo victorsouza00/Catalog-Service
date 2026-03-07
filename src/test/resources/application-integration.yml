@@ -1,0 +1,15 @@
+spring:
+  docker:
+    compose:
+      enable: true
+      skip :
+        in-tests: false
+      file: docker-compose-test.yml
+  datasource:
+    url: jdbc:postgresql://localhost:5434/catalog_db
+    username: user
+    password: password
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
