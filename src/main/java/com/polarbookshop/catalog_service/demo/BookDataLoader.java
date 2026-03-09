@@ -21,7 +21,7 @@ public class BookDataLoader {
     public void loadBookTest(){
         bookRepository.deleteAll();
         for (int i = 0; i < 20 ; i++) {
-            bookRepository.save(Book.of("1234567"+i,"Tittle " + i , "Person " + i , (double) (i + 10)));
+            bookRepository.save(Book.of("1234567"+i,"Tittle " + i , "Person " + i , (double) (i + 10),null));
         }
     }
 }
