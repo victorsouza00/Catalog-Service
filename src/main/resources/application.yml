@@ -2,10 +2,9 @@ spring:
   application:
     name: catalog-service
   config:
-    import: "optional:configserver:http://localhost:8888"
+    import: "optional:configserver:"
   cloud:
     config:
-      uri: http://localhost:8888
       request-connect-timeout: 5000
       request-read-timeout: 5000
       fail-fast: true
@@ -15,7 +14,7 @@ spring:
         max-interval: 2000
         multiplier: 1.1
   datasource:
-    url: jdbc:postgresql://localhost:5433/polardb_catalog
+    url: jdbc:postgresql://localhost:5432/polardb_catalog
     username: user
     password: password
     hikari:
