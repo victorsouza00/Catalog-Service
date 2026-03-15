@@ -143,6 +143,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<name>meu-usuario/minha-app:latest</name>
+						<builder>paketobuildpacks/builder:base</builder>
+					</image>
+				</configuration>
 				<version>3.4.4</version>
 			</plugin>
 			<plugin>
