@@ -79,8 +79,18 @@ jobs:
           output-format: sarif
           output-file: results.sarif
 
+      - name: Validate SARIF file
+        if: always()
+        run: |
+            if [ ! -f results.sarif ] || [ ! -s results.sarif ]; then
+              echo '{"version":"2.1.0","runs":[]}' > results.sarif
+              echo "SARIF file was missing or empty — using fallback."
+            else
+              echo "SARIF file is present."
+            fi
+
       - name: Upload vulnerability report
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         if: always()
         with:
           sarif_file: results.sarif
