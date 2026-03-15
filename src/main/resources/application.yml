@@ -5,6 +5,7 @@ spring:
     import: "optional:configserver:"
   cloud:
     config:
+      enabled: false
       request-connect-timeout: 5000
       request-read-timeout: 5000
       fail-fast: true
