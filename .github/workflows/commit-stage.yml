@@ -4,7 +4,7 @@ on: push
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: victorsouza00/catalog-service
-  VERSION: latest
+  VERSION: ${{ github.sha }}
 
 jobs:
   build:
@@ -91,7 +91,7 @@ jobs:
 
       - name: Upload vulnerability report
         uses: github/codeql-action/upload-sarif@v4
-        if: always()
+        if: always() && hashFiles('results.sarif') != ''
         with:
           sarif_file: results.sarif
 
