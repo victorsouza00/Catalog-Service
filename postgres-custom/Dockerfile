@@ -1,0 +1,5 @@
+FROM postgres:14.4
+ENV POSTGRES_DB=polar-postgres
+ENV POSTGRES_USER=user
+ENV POSTGRES_PASSWORD=password
+EXPOSE 5432
