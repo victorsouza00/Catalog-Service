@@ -38,6 +38,15 @@ jobs:
         run: |
           chmod +x mvnw
           ./mvnw verify
+      - name: Validate Kubernetes manifests
+        uses: docker://ghcr.io/yannh/kubeconform:latest
+        with:
+          args: >
+            -strict
+            -summary
+            -ignore-missing-schemas
+            -schema-location default
+            k8s
   package:
     name: Package and Build
     if: ${{ github.ref == 'refs/heads/main' }}
